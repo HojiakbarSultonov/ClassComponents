@@ -2,16 +2,21 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
+import Card from "./Card";
+import { movies } from "../movies";
+
 
 
 const App = () => {
-    return (
-        <div className="container" >
-            <Header />
+   
+  return (
+    <div className="container">
+      {/* <Header />
             <Note />
-            <Footer />
-        </div>
-    )
-}
+            <Footer /> */}
+      <Card movies = {movies}/>
+    </div>
+  );
+};
 
-export default App
+export default App;
