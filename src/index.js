@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
+import App2 from "./App2";
 
 
 // const firstName = 'Hojiakbar';
@@ -70,7 +71,8 @@ ReactDOM.render(
                 </div>
             </div>
       </div> */}
-        <App />
+        {/* <App /> */}
+        <App2 />
     </div>,
 
 
