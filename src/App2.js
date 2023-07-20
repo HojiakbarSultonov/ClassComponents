@@ -6,14 +6,15 @@ class App2 extends Component {
     minute: 0,
     hour: 0,
     btnDisabled: false,
-    interval:""
+    interval: "",
+    intervalsStorage: [],
   };
 
   startClicked = () => {
     this.setState({
-      btnDisabled:true
-    })
-   let timer = setInterval(() => {
+      btnDisabled: true,
+    });
+    let timer = setInterval(() => {
       const { second, minute, hour } = this.state;
       if (second === 59) {
         if (minute === 59) {
@@ -35,19 +36,27 @@ class App2 extends Component {
       }
     }, 1000);
     this.setState({
-      interval:timer
-    })
+      interval: timer,
+    });
   };
 
   stopClicked = () => {
     clearInterval(this.state.interval);
     this.setState({
-      btnDisabled:false
-    })
+      btnDisabled: false,
+    });
+  };
+
+  intervalClicked = () => {
+    const { second, minute, hour, intervalsStorage } = this.state;
+    intervalsStorage.push(`${hour}: ${minute}:${second}`);
+    this.setState({
+      intervalsStorage,
+    });
   };
 
   render() {
-    const { second, minute, hour, btnDisabled } = this.state;
+    const { second, minute, hour, btnDisabled, intervalsStorage } = this.state;
     return (
       <div>
         <div className="timer-container ">
@@ -80,12 +89,21 @@ class App2 extends Component {
             </button>
           </div>
           <div className="timerBtn">
-            <button className="btn  btn-secondary">Interval</button>
+            <button className="btn  btn-secondary" onClick={this.intervalClicked} disabled={!btnDisabled}>
+              Interval
+            </button>
           </div>
 
           <div className="timerBtn">
             <button className="btn  btn-warning">Clear</button>
           </div>
+        </div>
+        <div className="timer-container-intervals text-center">
+          {intervalsStorage.map((item, ind) => (
+            <p>
+              {ind + 1}.=&gt; {item}
+            </p>
+          ))}
         </div>
       </div>
     );
