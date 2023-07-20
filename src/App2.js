@@ -49,11 +49,21 @@ class App2 extends Component {
 
   intervalClicked = () => {
     const { second, minute, hour, intervalsStorage } = this.state;
-    intervalsStorage.push(`${hour}: ${minute}:${second}`);
+    intervalsStorage.push(`${hour}:${minute}:${second}`);
     this.setState({
       intervalsStorage,
     });
   };
+
+  clearClicked =()=>{
+    this.stopClicked();
+    this.setState({
+      second:0,
+      minute:0,
+      hour:0,
+      intervalsStorage:[]
+    })
+  }
 
   render() {
     const { second, minute, hour, btnDisabled, intervalsStorage } = this.state;
